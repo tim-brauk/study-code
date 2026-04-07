@@ -19,10 +19,12 @@ You will practice the following concepts:
 
 ### Task Description
 
+* **Requirement**: You forked the repository
 * Open GitHub Codespace with the C++ project configuration
 * Create a file called helloWorld.cpp
 * Write an application that prints __Hello World!__ on the console
 * Now open the "Run & Debug" view in VSCode and select the "Run/Debug C++" option before pressing the green Play-Button
+* Note: If you do not see the option "Run/Debug C++", you might have an earlier version of this repo. Try to sync your fork.
 * Ensure that the text is correctly printed out on the terminal
 * Now navigate with the terminal into the folder where you stored your helloWorld.cpp
 * Delete the previously created executeable file from the folder
