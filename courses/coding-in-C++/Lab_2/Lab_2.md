@@ -86,6 +86,7 @@ Create a class “Note” that stores a text message which is only known at runt
 * Create a second object and initialize it with the first object
 * Call `display()` for both objects  
 * Observe and explain in the comments:
+   * Why can you initialize the second object with the first one?
    * When the destructor is automatically called
    * What exception occurs or might occur in the destructor
 
