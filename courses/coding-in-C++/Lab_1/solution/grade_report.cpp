@@ -1,10 +1,14 @@
+/*
+ * File: grade_report.cpp
+ * Description: Contains main function to run the various jobs to create a report card.
+ */
+
 #include <iostream>
 #include <cstdint>
 #include "report_utilities.hpp"
 
-
-
-int main(){
+int main()
+{
 
     std::string name;
     std::uint_fast16_t homework = 0;

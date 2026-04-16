@@ -23,7 +23,7 @@ public:
     ~Note()
     {
         delete text;
-        text = NULL;
+        text = nullptr;
         std::cout << "Memory released" << std::endl;
     }
     void display();

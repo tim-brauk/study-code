@@ -1,11 +1,22 @@
+/*
+ * File: report_utilities.cpp
+ * Description: Contains the functions to read the user input,
+ *              calculate the grade and print it all out.
+ */
+
 #include "report_utilities.hpp"
 #include <iomanip>
 #include <limits>
 
-// read in user input from terminal
-void read_score(const std::string &text, std::uint_fast16_t &value)
+/**
+ * @brief Read in one number via std::cin and validate it.
+ *
+ * @param[in] text        String containing the text to output
+ * @param[out] value      Input value of the user
+ */
+void readScore(const std::string &text, std::uint_fast16_t &value)
 {
-
+    const int MAX_POINTS = 100;
     while (true)
     {
         std::cout << text;
@@ -19,7 +30,7 @@ void read_score(const std::string &text, std::uint_fast16_t &value)
             continue;
         }
         // check if it is larger than 100
-        else if (value > 100)
+        else if (value > MAX_POINTS)
         {
             std::cout << "Error: Not in the valid number range. Try again." << std::endl;
             continue;
@@ -28,48 +39,75 @@ void read_score(const std::string &text, std::uint_fast16_t &value)
     }
 }
 
-// read in user name and all scores
-void readStudentData(std::string &name, std::uint_fast16_t &homework, std::uint_fast16_t &midterm, std::uint_fast16_t &finalExam)
+/**
+ * @brief Read in all student data. Calls readScore from within.
+ *
+ * @param[out] name          String containing student name
+ * @param[out] homework      homework grade
+ * @param[out] midterm       midterm grade
+ * @param[out] final_exam    grade of final exam
+ */
+void readStudentData(std::string &name, std::uint_fast16_t &homework, std::uint_fast16_t &midterm, std::uint_fast16_t &final_exam)
 {
 
     std::cout << "Enter the student's name: ";
+
+    // removes leading whitespaces so that getline() is not immeadiately cancelled
+    std::cin >> std::ws;
 
     if (!(std::getline(std::cin, name)))
     {
         std::cout << "Error while reading input stream." << std::endl;
     }
 
-    read_score("Enter the homework score (0-100): ", homework);
-    read_score("Enter the midterm score (0-100): ", midterm);
-    read_score("Enter the final exam score (0-100): ", finalExam);
+    readScore("Enter the homework score (0-100): ", homework);
+    readScore("Enter the midterm score (0-100): ", midterm);
+    readScore("Enter the final exam score (0-100): ", final_exam);
 }
 
-// calculate the final grade and also return the grade as letter
+/**
+ * @brief Calculates the final grade
+ *
+ * @param[in] homework      homework grade
+ * @param[in] midterm       midterm grade
+ * @param[in] final_exam    grade of final exam
+ * @param[out] final_grade  the final grade
+ * @param[out] letter_grade string containing grade as letter
+ */
 void calculateGrade(
     std::uint_fast16_t homework, std::uint_fast16_t midterm,
     std::uint_fast16_t final_exam,
     double &final_grade, std::string &letter_grade)
 {
+    const int GRADE_LIMIT_A = 90;
+    const int GRADE_LIMIT_B = 80;
+    const int GRADE_LIMIT_C = 70;
+    const int GRADE_LIMIT_D = 60;
+    const int GRADE_LIMIT_E = 50;
 
-    final_grade = 0.4 * homework + 0.25 * midterm + 0.35 * final_exam;
+    const double FACTOR_HOMEWORK = 0.4;
+    const double FACTOR_FINAL_EXAM = 0.35;
+    const double FACTOR_MIDTERM = 0.25;
 
-    if (final_grade >= 90)
+    final_grade = FACTOR_HOMEWORK * homework + FACTOR_MIDTERM * midterm + FACTOR_FINAL_EXAM * final_exam;
+
+    if (final_grade >= GRADE_LIMIT_A)
     {
         letter_grade = "A";
     }
-    else if (final_grade >= 80)
+    else if (final_grade >= GRADE_LIMIT_B)
     {
         letter_grade = "B";
     }
-    else if (final_grade >= 70)
+    else if (final_grade >= GRADE_LIMIT_C)
     {
         letter_grade = "C";
     }
-    else if (final_grade >= 60)
+    else if (final_grade >= GRADE_LIMIT_D)
     {
         letter_grade = "D";
     }
-    else if (final_grade >= 50)
+    else if (final_grade >= GRADE_LIMIT_E)
     {
         letter_grade = "E";
     }
@@ -79,7 +117,16 @@ void calculateGrade(
     }
 }
 
-// output report card
+/**
+ * @brief Prints the report card
+ *
+ * @param[in] name          String containing student name
+ * @param[in] homework      homework grade
+ * @param[in] midterm       midterm grade
+ * @param[in] final_exam    grade of final exam
+ * @param[in] final_grade   the final grade
+ * @param[in] letter_grade  string containing grade as letter
+ */
 void printReport(
     const std::string &name, std::uint_fast16_t homework,
     std::uint_fast16_t midterm, std::uint_fast16_t final_exam,

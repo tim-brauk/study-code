@@ -44,11 +44,14 @@ Use names that describe purpose clearly.
 
 ### Rules
 
-- **Variables and parameters:** `lower_snake_case`
-- **Functions:** `lower_snake_case`, preferably verbs
+- **Variables / parameters:** `lower_snake_case` or `camelCase`
+- **Functions / methods:** `lower_snake_case` or `camelCase`, preferably verbs
+- **Namespaces:** `lower_snake_case`
 - **Constants:** `UPPER_SNAKE_CASE`
-- **Classes / methods / structs / enums:** `PascalCase`
+- **Classes / structs / enums:** `PascalCase`
 - **Pointers:** start with __p___ or __ptr___
+
+**Important: No matter what style you choose: Be consistent in your usage.**
 
 ### Good
 ```cpp
@@ -157,7 +160,6 @@ Header files define interfaces and must stay clean.
   - declarations
   - type definitions
   - constants
-  - small inline functions if justified
 - A header file should generally **not** contain:
   - large implementations
   - unrelated includes
@@ -207,7 +209,9 @@ Comments explain **intent**, assumptions, and design decisions. They should not 
    - Return values
    - Parameters
 - Explain **why**, not every trivial **what**.
-- Below is an **example** on how a function could be documented. Note: You can select your own style according to the rules above; just be consistent.
+- Below is an **example** on how a function could be documented.
+
+Note: You can select your own style according to the rules above; just be consistent.
 
 ### Good
 ```cpp
@@ -275,7 +279,6 @@ Unnamed numbers make code harder to understand.
 ### Rules
 
 - Replace magic numbers with named constants.
-- Use `const` for run-time read-only variables.
 - Choose meaningful names.
 
 ### Good
@@ -305,10 +308,9 @@ C++ gives many type features. Use them explicitly and carefully.
 ### Rules
 
 - Prefer exact and appropriate types.
-- Avoid implicit narrowing conversions.
+- No implicit narrowing conversions.
 - Use `bool` for logical states.
 - Prefer `enum class` over plain `enum`.
-- Use `std::size_t` for container sizes and indices where appropriate.
 - Avoid mixing signed and unsigned values carelessly.
 
 ### Good
@@ -399,7 +401,8 @@ Choose parameter passing deliberately.
 ### Rules
 
 - Small fundamental types: pass by value.
-- Large objects: pass by `const` reference if read-only.
+- Large objects: pass by reference.
+- Large read-only objects: pass by `const` reference.
 - Output parameters should be avoided when a return value is clearer.
 
 ### Good
@@ -488,7 +491,6 @@ Global state makes software harder to understand and test.
 
 - Avoid global variables.
 - Prefer passing data through parameters or class members.
-- If global constants are necessary, keep them read-only.
 
 ### Good
 ```cpp
@@ -621,7 +623,6 @@ Expressions must remain simple and unambiguous.
 
 - Avoid overly complex expressions.
 - Do not rely on subtle operator precedence.
-- Do not combine multiple side effects in one statement.
 - Split complex logic into intermediate variables.
 
 ### Good
@@ -681,7 +682,6 @@ Errors must be detected and handled explicitly.
 - Validate function inputs.
 - Do not ignore failure cases.
 - Error-handling code must be clear and testable.
-- For beginner/intermediate educational code, explicit status returns are often easier to understand than advanced exception-heavy designs.
 
 ### Good
 ```cpp
@@ -714,6 +714,7 @@ Classes should protect their internal state and expose a clear interface.
 
 - Member variables must generally be `private`.
 - Public methods form the interface.
+- Methods with more than 5 lines of code should be defined outside of the class.
 - A class should have one clear responsibility.
 
 ### Good
@@ -878,7 +879,6 @@ Inheritance is powerful, but it should be used carefully.
 ### Rules
 
 - Prefer composition over inheritance unless there is a true “is-a” relationship.
-- Use inheritance only when it improves design clarity.
 - Base classes should have a meaningful abstraction.
 - Avoid deep inheritance hierarchies.
 
@@ -960,7 +960,6 @@ Static members belong to the class, not to an object instance.
 
 - Use static data only when shared state is truly required.
 - Static methods must not depend on object state.
-- Static state should not become a hidden global system.
 
 ### Good
 ```cpp
