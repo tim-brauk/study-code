@@ -56,7 +56,8 @@
         {
             "name": "macOS",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/courses/coding-in-C/Lab_8/solution/include"
             ],
             "defines": [
                 "_DEBUG"
