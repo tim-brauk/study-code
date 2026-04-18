@@ -121,7 +121,7 @@ using namespace std;
 
 class Article {
 public:
-    string name;
+    // string name;
     double price;
     int stock;
     string* category;

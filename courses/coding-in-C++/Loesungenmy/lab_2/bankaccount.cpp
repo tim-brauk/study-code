@@ -15,13 +15,13 @@ class BankAccount
         string getAccountInfo();
 };
 
-void setOwner()
+void setOwner(std::string owner)
 {
     std::cout<<"Name eingeben";
     std::cin>>BankAccount.owner;
 }
-string getOwner()
+std::string getOwner()
 {
-    std::cout<<BankAccount.owner;
+
 }
 void desposit
