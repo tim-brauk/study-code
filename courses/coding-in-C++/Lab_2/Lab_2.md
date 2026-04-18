@@ -96,7 +96,94 @@ Create a class “Note” that stores a text message which is only known at runt
 * When a Note object is copied, the new object must allocate its own memory and store its own copy of the string
 * Verify if this resolves the observed issue from Part 1
 
-## 🟡 Section III: Fault Analysis – Online Shop Article Class
+## 🟢 Section III: Fluent Drink Builder
+
+In this task you will implement a small helper class using **method chaining** and **constexpr values**.
+
+---
+
+### 📘 Task Description
+
+Implement a class `DrinkBuilder` that allows configuring a drink step by step using a fluent interface.
+
+The goal is to enable code like this:
+
+```cpp
+DrinkBuilder builder;
+builder.setName("Tea")
+       .setSugar(2)
+       .setTemperature(65)
+       .setWithMilk(true)
+       .print();
+```
+
+---
+
+### Requirements
+
+- The class should contain at least:
+  - `std::string name`
+  - `int sugar`
+  - `int temperature`
+  - `bool withMilk`
+
+- Define at least one constant default value using `constexpr`, for example:
+  - a default temperature
+  - a maximum allowed sugar amount
+
+- This constant must be available at compile time
+- Use the `constexpr` value to initialize at least one attribute
+
+- The class should have at least the following methods:
+  - `setName(const std::string& name)`
+  - `setSugar(int sugar)`
+  - `setTemperature(int temperature)`
+  - `setWithMilk(bool withMilk)`
+
+Method chaining should be enabled.  
+This means that all setter methods must:
+
+- modify the object state
+- return a reference to the current object (`*this`)
+
+---
+
+### Additional Methods
+
+#### print()
+
+- Outputs all current values in a readable format
+
+#### isValid()
+
+- Checks whether the current drink configuration is valid
+- This method must be marked as `const`
+
+---
+
+### Additional Constraints
+
+- Use `const std::string&` where appropriate
+- At least one method must be marked as `const`
+- Prevent invalid values, for example:
+  - sugar must not be negative
+  - temperature must be greater than 0
+- Use reasonable default values with `constexpr`
+
+---
+
+### Example Output
+
+```text
+Drink: Tea
+Sugar: 2
+Temperature: 65
+With milk: true
+```
+
+---
+
+## 🟡 Section IV: Fault Analysis – Online Shop Article Class
 
 In this section you will analyze and debug an existing class implementation instead of writing one from scratch.
 
@@ -206,6 +293,20 @@ Answer the following questions:
 
 ### Task Part 3
 Write a corrected version of the program that solves all found issues and is in accordance with our coding convention.
+
+### Task Part 4
+Based on your developed code, create two UML diagrams: one class and one object diagram.
+
+The **class diagram** should contain all the details possible which are also available in the code including:
+- attributes
+- methods
+- visibility
+- data types
+- parameter with direction
+- special behaviour such as static or derived attributes
+
+The **UML object diagram** shows one concrete snapshot of your system at runtime.
+Please use meaningful object names and concrete attribute values.
 
 ### Hint
 Many of the errors are related to core OOP principles such as encapsulation, proper initialization, and safe memory handling discussed in the lecture.
@@ -318,78 +419,3 @@ Additionally, implement the following functionality:
    - returning or printing only the first `maxResults` matches
 
 - Demonstrate the functionality in `main()` with multiple resources and at least two different queries
-
-### 🟢 Section VI: Fluent Query Builder
-
-In this task you will implement a small helper class for building search queries using **method chaining** and **constexpr values**.
-
----
-
-### 📘 Task Description
-
-Implement a class `QueryBuilder` that allows constructing a search query step by step using a fluent interface.
-
-The goal is to enable code like this:
-
-```cpp
-QueryBuilder qb;
-qb.setText("C++")
-  .setMaxResults(5)
-  .enableCaseSensitive(false)
-  .build()
-  .print();
-```
-
----
-
-### Requirements
-
-- The class should contain at least:
-   - `std::string text`
-   - `int maxResults`
-   - `bool caseSensitive`
-
-- Define a constant value for the maximum number of results
-- This constant should be available at compile-time
-- Use this value to initialize `maxResults`
-
-- The class should have at least the following methods:
-   - `setText(const std::string& text)`
-   - `setMaxResults(int maxResults)`
-   - `enableCaseSensitive(bool enabled)`
-
-Method Chaining should be enabled. I.e. all setter methods must:
-   - modify the object state  
-   - return a reference to the current object (`*this`)
-
-
-In addition, the following methods need to be implemented:
-#### build()
-
-- Returns the fully constructed query object  
-- You may:
-  - return the builder itself **or**
-  - define a small `SearchQuery` struct/class and return that  
-
-#### print()
-
-- Outputs all current values in a readable format  
-
----
-
-### Additional Constraints
-
-- Use `const std::string&` where appropriate  
-- At least one method must be marked as `const`  
-- Ensure reasonable default values using `constexpr`  
-- Prevent invalid values (e.g. negative `maxResults`)
-
----
-
-### Example Output
-
-```text
-Query: C++
-Max Results: 5
-Case Sensitive: false
-```
