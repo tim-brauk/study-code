@@ -1,38 +1,55 @@
 #include <iostream>
+#include <string>
+#include <limits>
+#include <cstdint>
+
 
 namespace validation
 {
-    bool isAdult(int age);
-    bool isSenior(int age);
+    bool isAdult(uint8_t age);
+    bool isSenior(uint8_t age);
 }
 
-int getAge()
+ int getAge()
 {
     std::cout << "Alter eingeben: ";
     int age;
     std::cin >> age;
+    if(age < 0)
+    {
+        std::cout << "Bitte keine negativen Zahlen eingeben" << std::endl;
+    }
+    else if (age > 100)
+    {
+        std::cout << "So alt bist du nicht" << std::endl;
+    }
+    else 
+    {
+        return age;
+    }
+    
     return age;
 }
 
-bool validation::isAdult(int age)
+bool validation::isAdult(uint8_t age)
 {
     return (age >= 18 && age < 65);
 }
 
-bool validation::isSenior(int age)
+bool validation::isSenior(uint8_t age)
 {
     return (age >= 65);
 }
 
 int main()
 {
-    int age = getAge();
+   uint16_t age = getAge();
 
     if (!validation::isAdult(age) && !validation::isSenior(age))
     {
         std::cout << "Du bist " << age << " Jahre alt.\nDas bedeutet, du bist noch ein Kind oder Teenager." << std::endl;
     }
-    else if (validation::isAdult(age))
+    else if (validation::isAdult(age) && !validation::isSenior(age))
     {
         std::cout << "Du bist " << age << " Jahre alt.\nDas bedeutet, du bist ein Erwachsener." << std::endl;
     }
