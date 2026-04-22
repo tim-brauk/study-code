@@ -38,17 +38,18 @@ void printFrame(T frame, int size)
 }
 
 template <typename T>
-T min(T frame, int size)
+T min(T frame[], int size)
 {
 
-    T min = frame[0];
+    T minValue = frame[0];
     for (int i = 1; i < size; i++)
     {
-        if (frame[i] < min)
+        if (frame[i] < minValue)
         {
-            min = frame[i];
+            minValue = frame[i];
         }
     }
+    return minValue;
 }
 
 #endif
