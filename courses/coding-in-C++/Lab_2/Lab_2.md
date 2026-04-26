@@ -211,32 +211,32 @@ However, the implementation contains multiple conceptual, stylistic and technica
 ```c++
 #include <iostream>
 #include <string>
-#include <iomanip>
-using namespace std;
+#include <iomanip> 
+using namespace std; // schlechter stil
 
 class Article {
-public:
+public://atribute private machen
     // string name;
     double price;
     int stock;
-    string* category;
-    int id;
+    string* category;//pointer macht keinen sinn
+    int id;//sollte nicht öffentlich
 
     Article(string name, double price, int stock, string category, int id) {
-        name = name;
-        price = price;
-        stock = stock;
+        name = name; //hier fehlt das this->
+        price = price;//hier fehlt das this->
+        stock = stock;//hier fehlt das this->
         this->id = id;
         this->category = new string;
         *this->category = category;
-    }
+    }//destruvtor fehlt
 
     void setPrice(double price) {
-        price = price;
+        price = price;//hier fehlt das this->
     }
 
     void sell(int amount) {
-        stock = stock - amount;
+        stock = stock - amount;// stock wird nicht übergeben und nicht returnt
     }
 
     void restock(int amount) {
@@ -248,20 +248,20 @@ public:
         return price;
     }
 
-    double getPrice() {
+    double getPrice() {//const machen
         return price;
     }
 
     bool isAvailable() {
         if (stock > 0)
-            return true;
+            return true;//geschweifte klammern fehlen
         else
             return false;
     }
 
     void printInfo() {
         cout << "Article: " << name << endl;
-        cout << "Category: " << *category << endl;
+        cout << "Category: " << *category << endl; //printet eine adresse
         cout << "Price: " << price << endl;
         cout << "Stock: " << stock << endl;
         cout << "ID: " << id << endl;
@@ -269,7 +269,7 @@ public:
 };
 
 int main() {
-    Article a("Laptop", 999.99, 10, "Electronics", 101);
+    Article a("Laptop", 999.99, 10, "Electronics", 101);//magic numbers
 
     a.sell(15);
     a.restock(-5);

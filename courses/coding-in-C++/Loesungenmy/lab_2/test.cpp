@@ -4,9 +4,16 @@
 
 int main()
 {
-    std::string test;
-    std::cout << "eingebeb" << std::endl;
-    std::getline(std::cin >> std::ws, test);
-    std::cout<< test;
+    double x = 3;
+    double y = x * 0.1;
+    if(x == 0.3)
+    {
+        std::cout<<"No error";
+    }
+    else 
+    {
+        std::cout<<"Error";
+        std::cout<<y;
+    }
 
 }

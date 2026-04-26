@@ -9,7 +9,6 @@ class Notiz
         int size;
 
     public:
-        // Constructor (was wrongly named "Note" instead of "Notiz")
         Notiz(std::string initialText)
         {
             size = 1;
@@ -18,14 +17,23 @@ class Notiz
             std::cout << "Memory allocated\n";
         }
 
-        // Destructor (was wrongly named "~Note" instead of "~Notiz")
+        Notiz(const Notiz &other)
+        {
+            size = other.size;
+            text = new std::string[size];  
+            for (int i = 0; i < size; i++)
+            {
+                text[i] = other.text[i];   
+            }
+            std::cout << "Memory allocated (copy)\n";
+        }
+
         ~Notiz()
         {
             delete[] text;
             std::cout << "Memory released\n";
         }
 
-        // Fixed display method
         void display()
         {
             for (int i = 0; i < size; i++)
@@ -37,8 +45,9 @@ class Notiz
 
 int main()
 {
-    Notiz object("Hallo");
-    object.display();
+    Notiz object1("Hallo");
+    object1.display();
+    Notiz object2 = object1;
+    object2.display();
     return 0;
-    std::int_least64_t y = 5
 }

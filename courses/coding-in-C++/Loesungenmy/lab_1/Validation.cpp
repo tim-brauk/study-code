@@ -31,12 +31,12 @@ namespace validation
     return age;
 }
 
-bool validation::isAdult(uint8_t age)
+bool validation::isAdult(uint16_t age)
 {
     return (age >= 18 && age < 65);
 }
 
-bool validation::isSenior(uint8_t age)
+bool validation::isSenior(uint16_t age)
 {
     return (age >= 65);
 }
