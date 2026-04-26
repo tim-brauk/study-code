@@ -1,4 +1,4 @@
-# Lab 2: From C to C++
+# Lab 2: Basics of OOP
 
 This lab focuses on the basics of object-oriented programming in C++ including UML class and object diagrams.
 

@@ -846,7 +846,7 @@ Manual memory management must be minimized.
 
 ### Good
 ```cpp
-Sensor sensor;
+Sensor sensor; // do not use dynamic memory if possible
 ```
 
 ### Bad
