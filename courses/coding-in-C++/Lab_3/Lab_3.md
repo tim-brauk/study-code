@@ -459,4 +459,17 @@ Answer the following questions:
 - What would happen if multiple classes were declared as ```friend```?
 - Why is stealing implemented through public `Inventory` methods instead of direct access to private inventory data?
 - Compare the two options: using a ```friend class``` vs ```public interfaces```
+
 ---
+
+### 🟡 Task Part 3 – Main
+
+Test your program in a main function:
+- Create 3-4 characters of different types
+- Call the various methods to ensure correct behavior of your program
+- Use method chaining where possible
+
+Special task:
+- Add all characters into one array
+- Print out the current character level of each array element
+
