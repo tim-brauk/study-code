@@ -3,8 +3,8 @@
 
 class User {
     protected:
-        int id;
-        std::string name;
+        int id; // id ist privat und muss geschützt werden 
+        std::string name; // Name muss privat gehalten werden
     public:
         User(std::string name, int id) : name(name), id(id) {}  
         void printInfo();
@@ -12,7 +12,7 @@ class User {
 
 class Student : public User {
     private:
-        int year;
+        int year; //alter ist ein senibele information
     public:
         Student(std::string name, int id, int year)  
             : User(name, id), year(year) {}
@@ -24,7 +24,7 @@ class Student : public User {
 
 class Instructor : public User {
     private:
-        std::string profession;
+        std::string profession; // das könnte auch öffentlich sein 
     public:
         Instructor(std::string name, int id, std::string profession)  
             : User(name, id), profession(profession) {}
@@ -41,3 +41,6 @@ int main() {
     john.printInfo();
     return 0;
 }
+
+// 1. everything would be private  and with that non accesbible
+// 2. because without it would construct a class with diffrent constructar that would be an undefined behavieur
