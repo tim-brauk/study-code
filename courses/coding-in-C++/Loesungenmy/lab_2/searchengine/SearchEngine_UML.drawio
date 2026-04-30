@@ -1,0 +1,167 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- PAGE LABEL: Klassendiagramm -->
+    <mxCell id="label_class" value="Klassendiagramm" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="600" y="20" width="200" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--            CLASS: WebResource               -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- Header -->
+    <mxCell id="wr_header" value="WebResource" style="swimlane;startSize=30;fontStyle=1;fontSize=13;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;" vertex="1" parent="1">
+      <mxGeometry x="80" y="80" width="320" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Attributes -->
+    <mxCell id="wr_attrs" value="- url : String&#xa;- content : String&#xa;- rankScore : Double&#xa;/ isPopular : Boolean  {derived}  (rankScore &gt; 0.7)&#xa;- static indexCount : Int" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="80" y="110" width="320" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Divider line -->
+    <mxCell id="wr_div" value="" style="line;strokeColor=#6c8ebf;fillColor=#dae8fc;" vertex="1" parent="1">
+      <mxGeometry x="80" y="200" width="320" height="10" as="geometry" />
+    </mxCell>
+
+    <!-- Methods -->
+    <mxCell id="wr_methods" value="+ display() : void&#xa;+ getUrl() : String  {query}&#xa;+ getRankScore() : Double  {query}&#xa;+ checkPopularity() : Boolean  {query}" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="80" y="210" width="320" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Outer border -->
+    <mxCell id="wr_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="80" y="80" width="320" height="210" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--            CLASS: SearchQuery               -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="sq_header" value="SearchQuery" style="swimlane;startSize=30;fontStyle=1;fontSize=13;fillColor=#d5e8d4;strokeColor=#82b366;align=center;" vertex="1" parent="1">
+      <mxGeometry x="540" y="80" width="320" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="sq_attrs" value="- queryText : String&#xa;- maxResults : Int  (default: 10)&#xa;- createdAt : DateTime" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="540" y="110" width="320" height="70" as="geometry" />
+    </mxCell>
+
+    <mxCell id="sq_div" value="" style="line;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="1">
+      <mxGeometry x="540" y="180" width="320" height="10" as="geometry" />
+    </mxCell>
+
+    <mxCell id="sq_methods" value="+ isValid() : Boolean  {query}&#xa;+ display() : void&#xa;+ setMaxResults(in n : Int) : void" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="540" y="190" width="320" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="sq_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="540" y="80" width="320" height="175" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--            CLASS: SearchEngine              -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="se_header" value="SearchEngine" style="swimlane;startSize=30;fontStyle=1;fontSize=13;fillColor=#ffe6cc;strokeColor=#d6b656;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="80" width="340" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se_attrs" value="- engineName : String&#xa;- static totalQueryCount : Int  {default=0}&#xa;- maxIndexSize : Int  (default: 1000000)" style="text;strokeColor=#d6b656;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="110" width="340" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se_div" value="" style="line;strokeColor=#d6b656;fillColor=#ffe6cc;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="175" width="340" height="10" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se_methods" value="+ executeQuery(in q : SearchQuery) : List&lt;WebResource&gt;&#xa;+ getQueryCount() : Int  {query}&#xa;+ displayInfo() : void&#xa;+ resetStats() : void&#xa;- indexResource(in r : WebResource) : void" style="text;strokeColor=#d6b656;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="185" width="340" height="95" as="geometry" />
+    </mxCell>
+
+    <mxCell id="se_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="80" width="340" height="200" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--   LEGEND (Klassendiagramm)                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <mxCell id="legend_class" value="Legende:&#xa;+  public     –  private&#xa;/  derived (abgeleitet, nicht direkt gespeichert)&#xa;{query}  =  Methode ändert keinen Zustand (const/readonly)&#xa;static  =  Klassenattribut (unterstrichen in UML)&#xa;in:  =  Eingangsparameter" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=top;whiteSpace=pre;fontSize=11;fontColor=#333333;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="80" y="520" width="420" height="110" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!--                   OBJECT DIAGRAM (below)                       -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+
+    <mxCell id="label_obj" value="Objektdiagramm (Laufzeit-Snapshot)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="680" width="360" height="30" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--    OBJECT: myEngine : SearchEngine          -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="obj_se_header" value="myEngine : SearchEngine" style="swimlane;startSize=30;fontStyle=5;fontSize=12;fillColor=#ffe6cc;strokeColor=#d6b656;align=center;" vertex="1" parent="1">
+      <mxGeometry x="80" y="740" width="340" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_se_attrs" value="engineName = &quot;ClaudeSearch v1&quot;&#xa;totalQueryCount = 42&#xa;maxIndexSize = 1000000" style="text;strokeColor=#d6b656;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="80" y="770" width="340" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_se_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="80" y="740" width="340" height="95" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--    OBJECT: userQuery : SearchQuery          -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="obj_sq_header" value="userQuery : SearchQuery" style="swimlane;startSize=30;fontStyle=5;fontSize=12;fillColor=#d5e8d4;strokeColor=#82b366;align=center;" vertex="1" parent="1">
+      <mxGeometry x="560" y="740" width="340" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_sq_attrs" value="queryText = &quot;machine learning&quot;&#xa;maxResults = 5&#xa;createdAt = 2026-04-30 14:32" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="560" y="770" width="340" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_sq_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="560" y="740" width="340" height="95" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--    OBJECT: result1 : WebResource            -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <mxCell id="obj_wr_header" value="result1 : WebResource" style="swimlane;startSize=30;fontStyle=5;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;" vertex="1" parent="1">
+      <mxGeometry x="1040" y="740" width="340" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_wr_attrs" value="url = &quot;wikipedia.org/ml&quot;&#xa;content = &quot;ML is a subset of AI …&quot;&#xa;rankScore = 0.92&#xa;/ isPopular = true   (0.92 &gt; 0.7 → true)" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=8;fontSize=11;whiteSpace=pre;" vertex="1" parent="1">
+      <mxGeometry x="1040" y="770" width="340" height="80" as="geometry" />
+    </mxCell>
+
+    <mxCell id="obj_wr_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=2;pointerEvents=0;" vertex="1" parent="1">
+      <mxGeometry x="1040" y="740" width="340" height="110" as="geometry" />
+    </mxCell>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--   LEGEND (Objektdiagramm)                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <mxCell id="legend_obj" value="Legende:&#xa;Objektname : Klassenname  (Name unterstrichen = Objekt, nicht Klasse)&#xa;/  =  abgeleitetes Attribut (kein direkter Speicher, aus rankScore berechnet)" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=top;whiteSpace=pre;fontSize=11;fontColor=#333333;spacingLeft=8;" vertex="1" parent="1">
+      <mxGeometry x="80" y="880" width="500" height="75" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
