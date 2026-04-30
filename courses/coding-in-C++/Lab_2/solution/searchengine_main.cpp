@@ -4,7 +4,7 @@
  *
  * This file creates several web resources, executes multiple queries,
  * and prints the corresponding search results.
- * How to compile: g++ main.cpp searchEngine.cpp searchQuery.cpp webResource.cpp -o searchEngineApp
+ * How to compile: g++ searchengine_main.cpp searchEngine.cpp searchQuery.cpp webResource.cpp -o searchEngineApp
  */
 
 #include <iostream>
