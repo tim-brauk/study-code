@@ -178,7 +178,7 @@ The implementation contains several errors related to dynamic polymorphism.
 class AudioFile
 {
 public:
-    void play() const
+    void play() const //virtual fehlt
     {
         std::cout << "Playing generic audio file\n";
     }
@@ -188,7 +188,7 @@ public:
         std::cout << "Generic audio file\n";
     }
 
-    ~AudioFile()
+    ~AudioFile() //Dekonstruktor ist nicht virtual
     {
         std::cout << "AudioFile destroyed\n";
     }
@@ -205,7 +205,7 @@ public:
     {
     }
 
-    void play()
+    void play() //override fehlt /const fehlt
     {
         std::cout << "Playing MP3 by " << artist << "\n";
     }
@@ -224,7 +224,7 @@ public:
 class WAVFile : public AudioFile
 {
 public:
-    void play() const
+    void play() const //override fehlt
     {
         std::cout << "Playing WAV file\n";
     }

@@ -71,6 +71,8 @@ public:
 
     // ----------------------------------------------------------
     //  Getter-Methoden {query} = const
+
+    
     // ----------------------------------------------------------
     std::string getUrl() const {          // + getUrl() : String {query}
         return url;
