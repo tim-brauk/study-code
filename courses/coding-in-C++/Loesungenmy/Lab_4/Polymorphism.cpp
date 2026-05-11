@@ -52,6 +52,4 @@ int main()
     Vector2D a(5, 3);
     a.length();
     a.printco();
-    
-
 }
