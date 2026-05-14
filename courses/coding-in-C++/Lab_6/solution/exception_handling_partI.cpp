@@ -11,6 +11,8 @@ private:
     const double max_value;
 
 public:
+    // if an exception is thrown from within a constructor
+    // the object in creation is automatically deleted
     Sensor(const std::string &sensor_name,
            double initial_value,
            double minimum_value,
@@ -87,17 +89,6 @@ int main()
     catch (const std::exception &error)
     {
         std::cout << "Water level error: "
-                  << error.what()
-                  << std::endl;
-    }
-
-    try
-    {
-        Sensor broken_sensor("Broken Sensor", 50.0, 100.0, 0.0);
-    }
-    catch (const std::exception &error)
-    {
-        std::cout << "Configuration error: "
                   << error.what()
                   << std::endl;
     }
