@@ -1,6 +1,6 @@
 # Lab 6: Exception Handling & Smart Pointer
 
-This lab focuses on **Exception Handling & SMart Pointer in C++**.
+This lab focuses on **Exception Handling & Smart Pointer in C++**.
 
 You will practice the following concepts:
 
@@ -21,7 +21,47 @@ All the following sections of this lab are based on the following levels of difi
 
 ---
 
-## 🟡 Section I: Exception Handling
+## 🟢 Section I: Exception Handling with `ConfigLoader`
+
+In this section you will practice the basics of exception handling in C++.
+
+You will practice the following concepts:
+
+* `try`, `throw`, and `catch`
+* standard exceptions
+* custom exception classes
+* exception propagation
+
+---
+
+### Task Description
+
+Implement a class `ConfigLoader`. This class should have a method `load(filename)`. Your task is to handle different error cases inside the method (the actual logic of the method is irrelevant for this exercise).
+
+* Empty filenames are invalid
+* Only file extensions of type `.cfg` are allowed
+* An error should be generated if the file cannot be opened
+  Simulate this behavior with:
+
+```cpp
+filename == "missing.cfg"
+```
+
+* An error should be generated if the system-specific configuration is invalid
+  Simulate this behavior with:
+
+```cpp
+filename == "invalid.cfg"
+```
+
+### Requirements
+
+* Use appropriate exceptions (standard exceptions or your own exception classes) to handle these cases.
+* Test all error cases in your `main` function.
+
+---
+
+## 🟡 Section II: Smart greenhouse
 
 In this section you will practice exception handling in C++.
 
@@ -87,8 +127,7 @@ Examples:
 
 Create three sensors to measure the above mentioned states and intentionally trigger invalid situations.
 
-Use catch blocks directly after the try statements in the main. The catch-statement should use a parameter of type ```std::exception```.
-
+Use one catch block directly after the try statements in the main to catch each exception.
 Use the what-method to output the catched exception message.
 
 ### Question
@@ -113,7 +152,7 @@ Create a custom exception class called __SensorFailureError__ representing a spe
 
 It should return the error message ```Sensor is unreachable```.
 
-Then add a method:
+Then add a method to the Sensor class:
 
 ```cpp
 simulate_failure()
@@ -124,7 +163,7 @@ Catch this exception in `main()`.
 
 ---
 
-## Reflection Questions
+### Reflection Questions
 
 1. Why are exceptions preferable to integer error codes in this system?
 2. Why should exceptions usually be caught by `const` reference?
@@ -134,7 +173,7 @@ Catch this exception in `main()`.
 6. Why should exceptions not be used for normal control flow?
 7. What happens if an exception is never caught?
 
-## Section II: Smart Pointers
+## 🟡 Section III: Smart Pointers
 
 In this section you will practice memory management using smart pointers in C++.
 
@@ -148,8 +187,7 @@ You will practice the following concepts:
 
 ## Task Description
 
-You are part of a software engineering team developing a streaming platform.
-
+The goal is to implement parts of a basic streaming platform.
 The platform manages different types of media devices:
 
 * speakers
@@ -173,7 +211,7 @@ The class should contain:
 
 1. device name
 2. device type
-3. power status
+3. power status which is false by default
 
 Add methods:
 
@@ -190,37 +228,31 @@ Create a class `Room`.
 The class should contain:
 
 1. room name
-2. a collection of devices
+2. a list container of devices
 
 Rules:
 
 * each device belongs to exactly one room
 * devices must be managed using `std::unique_ptr`
-* use `std::make_unique` when creating devices
 
 Add methods:
 
 1. `add_device(...)`
-2. `remove_device(...)`
+2. `remove_device_by_name(...)`
 3. `print_devices()`
 
 ---
 
 ### Testing in `main()`
 
-Create multiple rooms and devices.
+Create multiple rooms.
+Create multiple devices owned by unique pointers.
 
-Move devices into rooms using:
-
-```cpp
-std::move(...)
-```
-
-After moving, test whether the original pointer became `nullptr`.
+Move devices into rooms and test what happens with the original pointer.
 
 ---
 
-## 🟡 Part 2: Ownership Semantics
+## 🟢 Part 2: Ownership Semantics
 
 Answer the following questions by experimenting with code:
 
@@ -231,21 +263,51 @@ Answer the following questions by experimenting with code:
 
 ---
 
-## 🟠 Part 3: `std::shared_ptr`
+## 🔴 Part 3: `std::shared_ptr` and Inheritance
 
 Some devices should be shareable between multiple rooms.
 
-Example:
+Examples:
 
-* a central music server
-* a network storage device
+- a central music server
+- a network storage device
 
-Create a class `SharedDevice`.
+These shared devices are specialized devices with additional network functionality.
 
-The class should contain:
+Create a class:
 
-1. device name
-2. device type
+```cpp
+SharedDevice
+```
+
+that inherits from:
+
+```cpp
+Device
+```
+
+---
+
+## Additional Requirements for `SharedDevice`
+
+The class should additionally contain:
+
+1. IP address
+2. network connection status
+
+Add methods:
+
+```cpp
+connect_to_network()
+disconnect_from_network()
+print_network_info()
+```
+
+---
+
+## Shared Ownership
+
+Shared devices may belong to multiple rooms simultaneously.
 
 Use:
 
@@ -253,90 +315,44 @@ Use:
 std::shared_ptr
 ```
 
-to manage these devices.
+to manage shared devices.
 
 ---
 
-Modify the `Room` class so that rooms may also contain shared devices.
+## Modify the `Room` class
+
+Rooms should now support:
+
+1. exclusive devices (`std::unique_ptr<Device>`)
+2. shared devices (`std::shared_ptr<SharedDevice>`)
 
 Add methods:
 
-1. `add_shared_device(...)`
-2. `print_shared_devices()`
+```cpp
+add_shared_device(...)
+print_shared_devices()
+```
 
-Use:
+---
+
+## Testing in `main()`
+
+1. Create shared devices using:
 
 ```cpp
 std::make_shared(...)
 ```
 
-when creating shared devices.
-
----
-
-### Example
-
-```cpp
-std::shared_ptr<SharedDevice> server =
-    std::make_shared<SharedDevice>(
-        "Main Server",
-        "Streaming"
-    );
-```
-
-Add the same shared device to multiple rooms.
-
----
-
-### Testing in `main()`
-
-Use:
+2. Add the same shared device to multiple rooms.
+3. Check the reference counter using:
 
 ```cpp
 use_count()
 ```
 
-to observe shared ownership.
-
-Example:
-
-```cpp
-std::cout << server.use_count()
-          << std::endl;
-```
-
-Check the reference counter:
-
-1. after creation
-2. after adding to rooms
-3. after rooms are destroyed
-
----
-
-## 🔴 Part 4: Comparing `unique_ptr` and `shared_ptr`
-
-Experiment with both smart pointer types and answer the following questions:
-
-1. Which pointer type supports exclusive ownership?
-2. Which pointer type supports shared ownership?
-3. Which pointer type has less overhead?
-4. Why can `shared_ptr` be more expensive?
-5. In which situations should `unique_ptr` be preferred?
-6. When is `shared_ptr` appropriate?
-
----
-
-## Requirements
-
-Your solution must contain:
-
-1. at least one `std::unique_ptr`
-2. at least one `std::shared_ptr`
-3. usage of `std::move(...)`
-4. usage of `make_unique`
-5. usage of `make_shared`
-6. at least one destructor output
-7. at least one `use_count()` test
+- after creation
+- after adding to rooms
+- after rooms are destroyed
 
 ---
 
@@ -348,4 +364,134 @@ Your solution must contain:
 4. What problem does `std::shared_ptr` solve?
 5. What does `use_count()` represent?
 6. Why can cyclic references become problematic with `std::shared_ptr`?
-7. Which smart pointer should usually be preferred in modern C++?
+7. Why should the base class destructor be virtual in polymorphic class hierarchies?
+
+## 🔴 Section IV: Bug Hunt & System Extension
+
+In this section you will analyze, debug and extend a larger C++ software system.
+
+You will practice the following concepts:
+
+* debugging and code analysis
+* logical and conceptual software errors
+* object-oriented design
+* STL containers
+* smart pointers
+* inheritance and polymorphism
+* software architecture improvements
+
+---
+
+## Task Description
+
+You are working on driver assistance systems for autonomous vehicles.
+
+The project already contains several components:
+
+* vehicles
+* distance sensors
+* emergency brake systems
+* adaptive cruise control
+* lane keeping assistants
+* parking assistants
+
+The current implementation compiles successfully, but contains several logical and conceptual problems.
+
+Your task is divided into multiple parts.
+
+---
+
+## 🟡 Part 1: Bug Hunt
+
+Analyze the existing source code and identify all logical or conceptual errors.
+Check the following files:
+- bugHunt_assistance_system.cpp
+- bugHunt_assistance_system.hpp
+- bugHunt_vehicle.cpp
+- bugHunt_vehicle.hpp
+- bugHunt_main.cpp
+
+---
+
+### Requirements
+
+1. Identify all 10 errors in the provided code.
+2. Explain why they are problematic.
+3. Correct the implementation.
+
+---
+
+### Testing
+
+After fixing the bugs:
+
+* emergency braking should trigger correctly
+* adaptive cruise control should slow down when necessary
+* steering corrections should behave correctly
+* invalid sensor values should be handled properly
+* parking assistant warnings should work as expected
+
+---
+
+## 🟡 Part 2: Smart Pointer Refactoring
+
+The current implementation uses raw pointers for sensor management.
+
+Refactor the project to use smart pointers instead.
+
+---
+
+### Requirements
+
+Replace raw pointers with:
+
+```cpp
+std::shared_ptr
+```
+
+The parking assistant should safely manage sensor ownership without using raw pointers.
+
+---
+
+### Additional Tasks
+
+1. Store sensors inside STL containers.
+2. Add the same front sensor to multiple systems in main.
+3. Print the reference counter in main to keep track of the number of owners.
+
+---
+
+## 🔴 Part 3: Polymorphic Assistance Systems
+
+Currently, all assistance systems are implemented independently.
+
+Introduce a common polymorphic base class:
+
+```cpp
+class AssistanceFeature
+```
+
+with the following public methods:
+- void evaluate(Vehicle &vehicle)
+- void print_name()
+- ~AssistanceFeature()
+
+Decide which of these methods should be virtual, pure virtual or normal functions.
+
+---
+
+### Requirements
+
+The following assistance systems should inherit from this class.
+
+* `EmergencyBrakeSystem`
+* `AdaptiveCruiseControl`
+* `LaneKeepingAssist`
+
+Store all assistance systems in a container:
+
+```cpp
+std::vector<std::unique_ptr<AssistanceFeature>>
+```
+
+Execute all systems polymorphically inside a loop in main.
