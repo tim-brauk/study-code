@@ -116,8 +116,8 @@ Create a base class that represents a general geometric shape.
 
 - The class should define a method that computes the area
 - This method should just return a default value (0.0)
-- Think about whether this function should be declared as virtual and why
-- Think about whether this class needs a destructor and if so, what kind of destructor
+- Think about whether this function should be declared as virtual and why. Write a comment.
+- Think about whether this class needs a destructor and if so, what kind of destructor. Write a comment.
 
 ---
 
