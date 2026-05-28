@@ -1,4 +1,4 @@
-# Lab 8: 
+# Lab 8: Design guidelines and patterns
 
 
 All the following sections of this lab are based on the following levels of dificulty:
@@ -11,8 +11,49 @@ All the following sections of this lab are based on the following levels of difi
 
 ---
 
-## 🟢 Section I: ..
+## 🟢 Section I: SOLID BugHunt - FootballManager
+
+In this section, you will analyze a small C++ project called `FootballManager`.
+
+The project compiles and runs, but its design is intentionally poor.  
+Your task is to find design problems related to the **SOLID principles** and refactor the code.
+
+The SOLID principles are:
+
+- **S**ingle Responsibility Principle
+- **O**pen/Closed Principle
+- **L**iskov Substitution Principle
+- **I**nterface Segregation Principle
+- **D**ependency Inversion Principle
 
 ---
 
-### Task Description
+## Task Description
+
+Analyze the given project files:
+
+- `FootballManager.hpp`
+- `FootballManager.cpp`
+
+The current implementation violates all five SOLID principles at least once.
+
+Your tasks:
+
+1. Identify at least **one violation for each SOLID principle**.
+2. Write your findings as comments in the code or in a separate markdown file.
+3. Refactor the project so that the SOLID principles are better respected.
+4. The program should still be able to:
+   - manage a football player
+   - train a player
+   - select a match strategy
+   - save player data
+   - send a message to the player
+   - print a sponsor report
+
+Answer as comments in the code:
+
+- Which class violates the Single Responsibility Principle?
+- Where is the Open/Closed Principle violated?
+- Where is the Interface Segregation Principle violated?
+- Why is `InjuredPlayer` problematic regarding the Liskov Substitution Principle?
+- Which concrete dependencies should be replaced by abstractions?

@@ -109,10 +109,10 @@ void printVector(const std::vector<T> &data)
 {
     std::cout << "[";
 
-    for (std::size_t i = 0; i < data.size(); i++)
+    for (auto element : data)
     {
-        std::cout << data[i];
-        if (i < data.size() - 1)
+        std::cout << element;
+        if (element != data.back())
         {
             std::cout << ", ";
         }

@@ -20,6 +20,10 @@ public:
 class TemperatureSensor
 {
 private:
+    float temperature = 0.0f;
+
+    std::vector<Observer *> observers;
+
     void notify_observers()
     {
         for (Observer *observer : observers)
@@ -27,10 +31,6 @@ private:
             observer->update(temperature);
         }
     }
-
-    float temperature = 0.0f;
-
-    std::vector<Observer *> observers;
 
 public:
     void add_observer(Observer *observer)
