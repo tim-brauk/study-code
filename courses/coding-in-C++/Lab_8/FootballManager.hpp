@@ -6,7 +6,7 @@
 class Player
 {
 private:
-    std::string name;
+    std::string name; // namen nicht als const wird danach überall als const verwendet
     int age;
 
 public:
@@ -27,14 +27,14 @@ public:
     void train(int intensity) override;
 };
 
-class ClubService
+class ClubService //clubservice hat zu viele verantwortlichkeiten
 {
 public:
     virtual ~ClubService() = default;
 
     virtual void train_player(Player &player, int intensity) = 0;
     virtual void save_player(const Player &player) = 0;
-    virtual void notify_player(const Player &player, const std::string &message) = 0;
+    virtual void notify_player(const Player &player, const std::string &message) = 0; //aufteilen 
 };
 
 class FilePlayerRepository
@@ -49,7 +49,7 @@ public:
     void send(const Player &player, const std::string &message);
 };
 
-class FootballManager : public ClubService
+class FootballManager : public ClubService //dependency inversion 
 {
 private:
     void select_strategy(const std::string &strategy);
