@@ -1,4 +1,4 @@
-#include "vehicle.hpp"
+#include "bugHunt_vehicle.hpp"
 
 Vehicle::Vehicle(const std::string &vehicle_model)
     : model(vehicle_model),
@@ -11,17 +11,20 @@ Vehicle::Vehicle(const std::string &vehicle_model)
 
 void Vehicle::accelerate(double amount_kmh)
 {
-    if (amount_kmh <= 0.0)
+    try
     {
+        if (amount_kmh <= 0.0)
+        {
+            throw std::invalid_argument("Acceleration must be positive.");
+        }
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
         return;
     }
 
     speed_kmh += amount_kmh;
-
-    if (speed_kmh > MAX_SPEED_KMH)
-    {
-        speed_kmh = MAX_SPEED_KMH;
-    }
 
     brake_light_on = false;
 }
@@ -38,7 +41,7 @@ void Vehicle::brake(double amount_kmh)
 
     if (speed_kmh < 0.0)
     {
-        speed_kmh = 0.0;
+        speed_kmh = amount_kmh;
     }
 }
 
@@ -67,7 +70,7 @@ double Vehicle::get_lane_offset() const
     return lane_offset_m;
 }
 
-const std::string &Vehicle::get_model() const
+std::string &Vehicle::get_model()
 {
     return model;
 }

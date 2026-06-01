@@ -41,7 +41,7 @@ Your tasks:
 
 1. Identify at least **one violation for each SOLID principle**.
 2. Write your findings as comments in the code or in a separate markdown file.
-3. Refactor the project so that the SOLID principles are better respected.
+3. Refactor the project so that the SOLID principles are considered.
 4. The program should still be able to:
    - manage a football player
    - train a player

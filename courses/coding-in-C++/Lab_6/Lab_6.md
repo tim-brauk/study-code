@@ -435,7 +435,7 @@ After fixing the bugs:
 
 ## 🟡 Part 2: Smart Pointer Refactoring
 
-The current implementation uses raw pointers for sensor management.
+The current implementation uses raw pointers and references for sensor management.
 
 Refactor the project to use smart pointers instead.
 
@@ -443,25 +443,20 @@ Refactor the project to use smart pointers instead.
 
 ### Requirements
 
-Replace raw pointers with:
-
-```cpp
-std::shared_ptr
-```
-
-The parking assistant should safely manage sensor ownership without using raw pointers.
+The parking assistant but also the other driver assistance systems should safely manage sensor ownership without using raw pointers.
+Hence, replace raw pointers with smart pointers.
 
 ---
 
 ### Additional Tasks
 
-1. Store sensors inside STL containers.
+1. Keep the sensors of the parking assistant stored inside STL containers.
 2. Add the same front sensor to multiple systems in main.
 3. Print the reference counter in main to keep track of the number of owners.
 
 ---
 
-## 🔴 Part 3: Polymorphic Assistance Systems
+## 🟡 Part 3: Polymorphic Assistance Systems
 
 Currently, all assistance systems are implemented independently.
 
