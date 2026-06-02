@@ -10,7 +10,7 @@ DistanceSensor::DistanceSensor(const std::string &sensor_position,
 
 void DistanceSensor::set_distance(double distance_m)
 {
-    measured_distance_m = distance_m;
+    measured_distance_m = distance_m; // es wird nicht überprüft ob der sensor überhaupt aktiv ist 
 }
 
 void DistanceSensor::activate()
@@ -40,12 +40,13 @@ std::string DistanceSensor::get_position() const
 
 bool DistanceSensor::operator<(const DistanceSensor &other) const
 {
-    return measured_distance_m > other.measured_distance_m;
+    return measured_distance_m < other.measured_distance_m;
 }
 
-bool DistanceSensor::is_exactly_at_warning_distance(double warning_distance) const
+bool DistanceSensor::is_exactly_at_warning_distance(double warning_distance) const // ändert sich daher kein const
 {
-    return measured_distance_m == warning_distance;
+   
+    return abs(warning_distance - measured_distance_m) <= 0.001;
 }
 
 void DistanceSensor::print_info() const
@@ -71,7 +72,7 @@ void EmergencyBrakeSystem::evaluate(Vehicle &vehicle,
     if (front_sensor.get_distance() > critical_distance_m)
     {
         std::cout << "[EmergencyBrakeSystem] Emergency braking triggered.\n";
-        vehicle.brake(30.0);
+        vehicle.brake(30.0);//magic number 
     }
 }
 
@@ -98,8 +99,8 @@ void LaneKeepingAssist::evaluate(Vehicle &vehicle) const
     }
     else
     {
-        vehicle.steer(0.0);
-    }
+        vehicle.steer(0.0); //damit wird das die lenkung gerade gemacht und zum beispiel bei einer kurve in die wand gefahren
+    }//0.0 bedeutet normale haltung 
 }
 
 AdaptiveCruiseControl::AdaptiveCruiseControl(double target_speed,
@@ -119,18 +120,18 @@ void AdaptiveCruiseControl::evaluate(Vehicle &vehicle,
 
     if (front_sensor.get_distance() < minimum_distance_m)
     {
-        std::cout << "[AdaptiveCruiseControl] Vehicle ahead is close. Accelerating.\n";
-        vehicle.accelerate(5.0);
+        std::cout << "[AdaptiveCruiseControl] Vehicle ahead is close. break.\n";
+        vehicle.brake(5.0); // muss bremsen sein
     }
     else if (vehicle.get_speed() < target_speed_kmh)
     {
         std::cout << "[AdaptiveCruiseControl] Increasing speed.\n";
-        vehicle.accelerate(5.0);
+        vehicle.accelerate(5.0); //magic number 
     }
     else if (vehicle.get_speed() > target_speed_kmh)
     {
         std::cout << "[AdaptiveCruiseControl] Reducing speed.\n";
-        vehicle.brake(5.0);
+        vehicle.brake(5.0);//magic number
     }
 }
 

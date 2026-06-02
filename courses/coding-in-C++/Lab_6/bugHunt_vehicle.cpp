@@ -33,6 +33,7 @@ void Vehicle::brake(double amount_kmh)
 {
     if (amount_kmh <= 0.0)
     {
+        throw std::invalid_argument("Breaking musst be negative");
         return;
     }
 
@@ -44,15 +45,31 @@ void Vehicle::brake(double amount_kmh)
         speed_kmh = amount_kmh;
     }
 }
+    
 
 void Vehicle::steer(double angle)
 {
-    steering_angle = angle;
+    if (steering_angle < 90)
+    {
+        std::cout << "Zu großer angel" << std::endl;
+        return;
+    }
+    else 
+    {
+        steering_angle = angle;
+    }
 }
 
 void Vehicle::update_lane_offset(double offset)
-{
-    lane_offset_m = offset;
+{   if (offset < 2)
+    {
+        std::cout << "Zu großer offest" << std::endl;
+        return;
+    }
+    else 
+    {
+        lane_offset_m = offset;
+    }
 }
 
 double Vehicle::get_speed() const
@@ -70,7 +87,7 @@ double Vehicle::get_lane_offset() const
     return lane_offset_m;
 }
 
-std::string &Vehicle::get_model()
+std::string &Vehicle::get_model() //hier fehlt const
 {
     return model;
 }
