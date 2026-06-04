@@ -6,6 +6,7 @@
 int main()
 {
     Vehicle ego_vehicle("Vector X1");
+    AssistanceFeature all;
 
     DistanceSensor front_sensor("front", 25.0);
     DistanceSensor rear_sensor("rear", 1.2);

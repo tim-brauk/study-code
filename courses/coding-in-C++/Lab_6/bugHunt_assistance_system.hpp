@@ -7,7 +7,13 @@
 #include <memory>
 
 #include "bugHunt_vehicle.hpp"
+class AssistanceFeature
+{
+    public:
+        virtual void evaulate(Vehicle &vehicle);
+        void printName();
 
+};
 class DistanceSensor
 {
 private:
@@ -35,7 +41,7 @@ public:
     void print_info() const;
 };
 
-class EmergencyBrakeSystem
+class EmergencyBrakeSystem : public AssistanceFeature
 {
 private:
     double critical_distance_m;
@@ -46,7 +52,7 @@ public:
     void evaluate(Vehicle &vehicle, const DistanceSensor &front_sensor) const;
 };
 
-class LaneKeepingAssist
+class LaneKeepingAssist : public AssistanceFeature
 {
 private:
     double max_allowed_offset_m;
@@ -58,7 +64,7 @@ public:
     void evaluate(Vehicle &vehicle) const;
 };
 
-class AdaptiveCruiseControl
+class AdaptiveCruiseControl : public AssistanceFeature
 {
 private:
     double target_speed_kmh;
