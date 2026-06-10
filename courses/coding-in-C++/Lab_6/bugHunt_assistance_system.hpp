@@ -12,6 +12,7 @@ class AssistanceFeature
     public:
         virtual void evaulate(Vehicle &vehicle);
         void printName();
+        ~AssistanceFeature();
 
 };
 class DistanceSensor
