@@ -6,8 +6,8 @@
 
 namespace validation
 {
-    bool isAdult(uint8_t age);
-    bool isSenior(uint8_t age);
+    bool isAdult(uint16_t age);
+    bool isSenior(uint16_t age);
 }
 
  int getAge()
