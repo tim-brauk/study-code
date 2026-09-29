@@ -1,0 +1,18 @@
+#include <iostrem>
+#include <string>
+
+class Bankaccount
+{
+    private:
+        std::string bankwoner;
+        double amaouunt;
+    public:
+        double getamount()
+        {
+            return amaouunt;
+        }
+        void setamount()
+        {
+            
+        }
+}
