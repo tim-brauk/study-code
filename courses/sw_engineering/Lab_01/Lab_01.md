@@ -34,13 +34,13 @@ Use this system as the basis for the following tasks.
 
 Consider the following activities:
 
-* A. Developers implement the connection search algorithm.
-* B. Students test whether the application satisfies their expectations.
-* C. The project team determines what functionality students need.
-* D. The application is released to the university app store.
-* E. Software architects define the components and interfaces of the system.
-* F. Developers fix defects and adapt the application after its release.
-* G. Testers check whether the complete application fulfills its specified requirements.
+* A. Developers implement the connection search algorithm. 3. Implementation
+* B. Students test whether the application satisfies their expectations. 5. testing
+* C. The project team determines what functionality students need. 1. Planning
+* D. The application is released to the university app store. 6. Deployment and Maintenance
+* E. Software architects define the components and interfaces of the system. 2. Desing
+* F. Developers fix defects and adapt the application after its release. 7. Maintance
+* G. Testers check whether the complete application fulfills its specified requirements. 4.Testing
 
 Assign each activity to an appropriate phase of the Software Development Life Cycle (SDLC).
 
@@ -48,10 +48,10 @@ Put the activities into a reasonable order.
 
 Name one typical artifact that could be created during each of the following activities:
 
-* Requirements Engineering
-* Design
-* Implementation
-* Testing
+* Requirements Engineering: Requirements specification document
+* Design: Software Design and architecture
+* Implementation: Executable Software and documentation
+* Testing: Test Reports
 
 #### 2. Waterfall Model
 
@@ -59,13 +59,15 @@ Assume that the university decides to develop the complete Campus Mobility App u
 
 Draw a simplified Waterfall Model and assign the major development activities to its phases.
 
-Explain why the Waterfall Model could work well if the requirements of the university are stable and well understood.
+Explain why the Waterfall Model could work well if the requirements of the university are stable and well understood.: Because with fixed requirmemts u dont need to go back 
 
 After implementation has already started, the university requests integration with the local public transport provider.
 
-Explain why this change can be problematic when using the Waterfall Model.
+Explain why this change can be problematic when using the Waterfall Model.: Bec after u finished a step you cant go back in the waterfall model
 
 Name two potential advantages and two potential disadvantages of using the Waterfall Model for this project.
+Advantages: Clear structure and 
+Disadadvantges: No backtracking, testing is laze
 
 #### 3. V-Model
 
