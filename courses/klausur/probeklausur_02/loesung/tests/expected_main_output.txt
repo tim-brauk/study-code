@@ -1,0 +1,91 @@
+Auftrag abgelehnt: Ungueltige Arbeitszeit: 0.000000 h
+Zuweisung 501 (Lena): true
+Zuweisung 500 (Lena, zu viele Stunden: 10 h + 1.5 h > 11 h): false
+Zuweisung 503 (Lena, keine Qualifikation Electrics): false
+Zuweisung 503 (Max): true
+Zuweisung 501 (Max, nicht mehr offen): false
+Zuweisung 502 (Max): true
+
+Type                Inspection
+Order No            500
+License Plate       RV-AB 123
+Work Hours          1.5 h
+Qualification       Maintenance
+Main Inspection     Yes
+Price               265.50 EUR
+Status              Open
+Mechanic            None
+--------------------------------------------------
+Type                Repair
+Order No            501
+License Plate       FN-XY 42
+Work Hours          10 h
+Qualification       Engine
+Parts Cost          350.00 EUR
+Price               935.00 EUR
+Status              In Progress
+Mechanic            Lena Vogt
+--------------------------------------------------
+Type                Inspection
+Order No            502
+License Plate       RV-CD 7
+Work Hours          1 h
+Qualification       Maintenance
+Main Inspection     No
+Price               114.00 EUR
+Status              In Progress
+Mechanic            Max Huber
+--------------------------------------------------
+Type                Repair
+Order No            503
+License Plate       RV-EF 99
+Work Hours          3 h
+Qualification       Electrics
+Parts Cost          120.00 EUR
+Price               315.00 EUR
+Status              In Progress
+Mechanic            Max Huber
+--------------------------------------------------
+Umsatz Autohaus Schmid: 0.00 EUR
+
+Max schliesst 503 ab: true
+Max schliesst 501 ab (gehoert Lena): false
+Lena schliesst 501 ab: true
+Auslastung Lena: 0 h
+Umsatz Autohaus Schmid: 1250.00 EUR
+Entfernen abgelehnt: Auftrag 502 ist noch nicht abgeschlossen
+Entferne 503: true
+Entferne 999 (unbekannt): false
+Umsatz Autohaus Schmid: 935.00 EUR
+
+Nach Abschluss und Archivierung:
+Type                Inspection
+Order No            500
+License Plate       RV-AB 123
+Work Hours          1.5 h
+Qualification       Maintenance
+Main Inspection     Yes
+Price               265.50 EUR
+Status              Open
+Mechanic            None
+--------------------------------------------------
+Type                Repair
+Order No            501
+License Plate       FN-XY 42
+Work Hours          10 h
+Qualification       Engine
+Parts Cost          350.00 EUR
+Price               935.00 EUR
+Status              Done
+Mechanic            Lena Vogt
+--------------------------------------------------
+Type                Inspection
+Order No            502
+License Plate       RV-CD 7
+Work Hours          1 h
+Qualification       Maintenance
+Main Inspection     No
+Price               114.00 EUR
+Status              In Progress
+Mechanic            Max Huber
+--------------------------------------------------
