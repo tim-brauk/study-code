@@ -1,0 +1,6 @@
+Anna;1.0
+Emma;1.7
+Felix;2.0
+Ben;2.3
+Clara;3.7
+David;4.7
