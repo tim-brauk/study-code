@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <math.h> // viel zu viele includes, die nicht gebraucht werden
 #include <ctype.h>
 
 int anzahl = 0;
@@ -14,9 +14,9 @@ int x;
 
 void studentHinzufuegen(char *name, float note)
 {
-    strcpy(namen[anzahl], name);   // name in array kopieren
-    noten[anzahl] = note;          // note speichern
-    anzahl++;                      // anzahl erhoehen
+    strcpy(namen[anzahl], name);   
+    noten[anzahl] = note;          
+    anzahl++;                     
 }
 
 void ausgabe()
