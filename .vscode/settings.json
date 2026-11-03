@@ -1,5 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "cmake.sourceDirectory": "C:/Users/timbr/Documents/studium/git/study-code/courses/coding-in-C++/Lab_12"
+    "cmake.sourceDirectory": "C:/Users/timbr/Documents/studium/git/study-code/courses/coding-in-C++/Lab_12",
+    "github.copilot.chat.copilotDebugCommand.enabled": false,
+    "github.copilot.chat.tools.viewImage.enabled": false,
+    "C_Cpp.copilotHover": "disabled",
+    "chat.disableAIFeatures": true
 }
