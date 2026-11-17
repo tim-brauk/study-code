@@ -306,3 +306,191 @@ Then answer briefly:
 Submit your MR link and these observations. Keep the successful MR available for review.
 
 GitLab references: [Merge request pipelines](https://docs.gitlab.com/ci/pipelines/merge_request_pipelines/) and [switching between branch and merge request pipelines](https://docs.gitlab.com/ci/yaml/workflow/#switch-between-branch-pipelines-and-merge-request-pipelines).
+
+## 🟡 Section III: Possible Exam Questions for Verification
+
+This section contains a selection of possible exam questions related to software verification and quality assurance. They are based on the slides and exercises from the course.
+
+### 1. Verification, Validation, QA and QC
+
+A company develops a navigation system for emergency vehicles. The following activities are performed during development.
+
+**a)** Classify each activity as primarily **Verification, Validation, Quality Assurance (QA), or Quality Control (QC)**. Explain your decision.
+
+| Activity | Classification |
+|---|---|
+| A. Emergency responders evaluate whether the system supports their actual workflows. | |
+| B. A developer checks whether the implemented route calculation matches the specified algorithm. | |
+| C. The organization introduces mandatory coding guidelines and review procedures. | |
+| D. The test team executes tests to identify defects in the finished software. | |
+
+**b)** Explain the fundamental difference between Verification and Validation.
+
+**c)** Explain why QA should not be replaced entirely by QC activities.
+
+
+### 2. Review Metrics
+
+Two development teams review different software components. The following results are available:
+
+| Metric | Team A | Team B |
+|---|---:|---:|
+| Component size (LOC) | 2,000 | 3,000 |
+| Reviewed LOC | 1,600 | 3,000 |
+| Defects found | 24 | 30 |
+| Total review effort | 8 h | 15 h |
+| Critical defects | 3 | 1 |
+| Major defects | 9 | 11 |
+| Minor defects | 12 | 18 |
+
+**a)** Calculate the **defect density per KLOC** for each team, using reviewed LOC as the denominator.
+
+**b)** Calculate the **defect detection rate** in defects per review hour.
+
+**c)** Calculate the **review coverage** of each team as a percentage.
+
+**d)** Which team has the higher defect detection rate? Does this necessarily mean that its review process is more effective? Justify your answer.
+
+**e)** Explain why the defect severity distribution is relevant when prioritizing corrective actions.
+
+
+### 3. Pair Programming
+
+Two developers implement a safety-critical monitoring component using pair programming.
+
+**a)** Describe the responsibilities of the **Driver** and **Navigator**.
+
+**b)** Explain two advantages of pair programming compared with working individually and reviewing the code only after implementation.
+
+**c)** State one potential disadvantage of pair programming and propose one measure to mitigate it.
+
+
+### 4. Types of Static Analysis
+
+Assign the most appropriate type of static analysis to each finding.
+
+Choose from: **Linting, Static Application Security Testing (SAST), Software Composition Analysis (SCA), Code Quality Analysis, Compliance Checking.**
+
+Tools may cover several categories; select the best fit. Types may be used more than once.
+
+| Finding | Analysis type |
+|---|---|
+| A. A function name violates the project's naming convention. | |
+| B. A third-party library contains a known CVE. | |
+| C. User input is concatenated into an SQL query. | |
+| D. Several classes contain almost identical implementations. | |
+| E. A C++ implementation violates an AUTOSAR C++ coding rule. | |
+| F. A local variable could be declared `const`. | |
+| G. A component contains a deeply nested function that is difficult to maintain. | |
+| H. A third-party dependency inventory identifies a library whose license is prohibited by company policy. | |
+| I. An unsafe buffer operation may cause a buffer overflow. | |
+| J. Source code violates a mandatory MISRA C++ rule. | |
+
+### 5. Static Code Analysis of C++
+
+Consider the following simplified C++ code for calculating an aircraft's target climb airspeed. All airspeeds and corrections are expressed in knots; the limits are illustrative values for this question.
+
+```cpp
+#define MAX_AIRSPEED_KNOTS 250
+
+int CalculateTargetAirspeed(int* measuredAirspeed, int correctionKnots)
+{
+    int targetAirspeed = *measuredAirspeed + correctionKnots;
+
+    // Keep the target above the minimum climb airspeed.
+    if (targetAirspeed < 120)
+    {
+        targetAirspeed = 120;
+    }
+
+    // Limit the target to the maximum permitted airspeed.
+    if (targetAirspeed = MAX_AIRSPEED_KNOTS)
+    {
+        targetAirspeed = MAX_AIRSPEED_KNOTS;
+    }
+
+    return targetAirspeed;
+}
+```
+
+Identify **four issues** that could be reported by a linter or code quality analysis tool. For each issue, briefly explain the problem and propose a correction.
+
+
+## 🟡 Section IV: Calculating Test Coverage
+
+In this exercise, you will calculate **branch coverage, condition coverage, modified condition/decision coverage (MC/DC), and path coverage** for the same test suite. You will then extend the suite to meet each coverage target.
+
+### Task Description
+
+A monitoring component activates an alarm when both sensors report a fault or when a manual override is active. It also records whether logging is enabled.
+
+Consider the following C++ function. All inputs are independent Boolean values, and every input combination is valid.
+
+```cpp
+int EvaluateAlarm(bool sensorA, bool sensorB, bool manualOverride, bool loggingEnabled)
+{
+    int result = 0;
+
+    // Boolean bitwise operators to avoid short-circuiting and ensure all conditions are evaluated.
+    const bool alarmRequired = (sensorA & sensorB) | manualOverride;
+
+    if (alarmRequired) // D1: (A AND B) OR C
+    {
+        result += 1;
+    }
+
+    if (loggingEnabled) // D2: D
+    {
+        result += 2;
+    }
+
+    return result;
+}
+```
+
+Use these condition labels: **A** = `sensorA`, **B** = `sensorB`, **C** = `manualOverride`, and **D** = `loggingEnabled`.
+
+The initial test suite contains three tests:
+
+| Test | A | B | C | D |
+|---|---|---|---|---|
+| T1 | True | True | False | True |
+| T2 | False | False | False | False |
+| T3 | True | False | True | True |
+
+
+
+
+For each metric, show the covered items, the total number of items, and the resulting percentage:
+
+`Coverage = covered items / total items * 100%`
+
+### Tasks
+
+**a) Trace the tests.** Complete the table before calculating coverage.
+
+In **Path (D1, D2)**, record the two `if` outcomes in order. For example, `(True, False)` means the first `if` body executes and the second is skipped. Tests with the same pair follow the same path.
+
+
+| Test | D1 outcome | D2 outcome | Return value | Path (D1, D2) |
+|---|---|---|---|---|
+| T1 | | | | |
+| T2 | | | | |
+| T3 | | | | |
+
+**b) Calculate branch coverage.** List the observed outcomes for D1 and D2, then calculate the coverage of the initial suite.
+
+**c) Calculate condition coverage.** List the observed outcomes for A, B, C, and D, then calculate the coverage of the initial suite. Explain why condition coverage and branch coverage measure different things.
+
+**d) Calculate MC/DC.** For each condition, identify a valid independence pair from T1–T3 or explain why no pair exists. Calculate the percentage using the counting rules above. Can a suite reach 100% branch and condition coverage without achieving full MC/DC? Use your results to justify your answer.
+
+| Condition | Decision | Independence pair, or reason no pair exists |
+|---|---|---|
+| A | D1 | |
+| B | D1 | |
+| C | D1 | |
+| D | D2 | |
+
+**e) Calculate path coverage.** Enumerate all feasible paths, identify those executed by T1–T3, and calculate the coverage. Explain why testing every Boolean input combination is not required for full path coverage in this function.
+
+**f) Extend the suite.** Keep T1–T3 and add tests until the combined suite achieves **100% of all four metrics**. Use as few additional tests as you can, and justify your choice. Give every added test a unique ID and specify its inputs, expected decision outcomes, and expected return value.
